@@ -1,0 +1,175 @@
+         :root {
+            --controls-bg-color: rgba(255, 255, 255, 0.3);
+            --progress-bg-color: rgba(255, 255, 255, 0.3);
+            --progress-bar-color: #007aff;
+            --text-color: #000;
+            --control-hover-color: #007aff;
+            --disabled-control-color: #ccc;
+            --ios-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .a-enter-vr,
+        .a-enter-ar {
+            display: none !important;
+        }
+        
+        #buffering-indicator {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+        
+        .spinner {
+            border: 5px solid var(--controls-bg-color);
+            border-top: 5px solid var(--progress-bar-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        #video-url {
+            background-color: var(--controls-bg-color);
+            border: 1px solid #333;
+            padding: 8px;
+            border-radius: 13px;
+        }
+        
+        #controls {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            border-radius: 13px;
+            padding: 8px;
+            background-color: var(--controls-bg-color);
+            box-shadow: var(--ios-shadow);
+            transition: opacity 0.2s ease-in-out;
+            z-index: 10;
+        }
+        
+        #playBtn,
+        #clearBtn,
+        #pasteBtn,
+        #pauseBtn,
+        #fullscreenBtn {
+            cursor: pointer;
+            background-color: var(--control-hover-color);
+            color: white;
+            border: 1px solid #333;
+            padding: 8px 16px;
+            margin: 0 5px 5px;
+            margin-top: 10px;
+            border-radius: 13px;
+            transition: background-color 0.3s;
+        }
+        
+        #playBtn:hover,
+        #clearBtn:hover,
+        #pasteBtn:hover,
+        #pauseBtn:hover,
+        #fullscreenBtn:hover {
+            background-color: #005ecb;
+        }
+        
+        #fullscreenBtn {
+            position: absolute;
+            left: 10px;
+            bottom: 50px;
+            z-index: 20;
+            font-size: 12px;
+            padding: 8px 16px;
+            border-radius: 13px;
+        }
+        
+        #video-timer {
+            position: absolute;
+            bottom: 30px;
+            left: 15px;
+            color: var(--text-color);
+            background-color: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            z-index: 20;
+        }
+        
+        #progress-container {
+            position: absolute;
+            bottom: 15px;
+            border: 1px solid #333;
+            left: 15px;
+            right: 15px;
+            height: 10px;
+            background: var(--progress-bg-color);
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: var(--ios-shadow);
+            z-index: 5;
+        }
+        
+        #progress-bar {
+            background: var(--progress-bar-color);
+            width: 0%;
+            height: 100%;
+            border-radius: 4px;
+            position: absolute;
+            z-index: 1;
+        }
+        
+        #progress-container:hover #progress-bar {
+            background-color: lighten(var(--progress-bar-color), 10%);
+        }
+        
+        #buffering-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 13px;
+            z-index: 100;
+            box-shadow: var(--ios-shadow);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        #error-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+            background-color: rgba(255, 0, 0, 0.8);
+            color: white;
+            border-radius: 13px;
+            z-index: 110;
+            text-align: center;
+            max-width: 80%;
+            box-shadow: var(--ios-shadow);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        .controls-hidden {
+            opacity: 0;
+            visibility: hidden;
+            transition: visibility 0s 0.2s, opacity 0.2s ease-in-out;
+        }
+        
+        .controls-visible {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.2s ease-in-out;
+        }

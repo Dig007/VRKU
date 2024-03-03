@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VR PLAYER</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+</head>
+
+<body>
+    <div id="controls" class="ui-element">
+        <input type="text" id="video-url" class="ui-element" placeholder="Enter video URL here" size="45">
+        <button id="playBtn" class="ui-element" onclick="playVideo()">
+            <i class="fa fa-play"></i> Play
+        </button>
+        <button id="pauseBtn" class="ui-element" onclick="pauseVideo()" style="display:none;">
+            <i class="fa fa-pause"></i> Pause
+        </button>
+        <button id="clearBtn" class="ui-element" onclick="clearUrl()">
+            <i class="fa fa-trash"></i> Clear
+        </button>
+        <button id="pasteBtn" class="ui-element" onclick="pasteUrl()">
+            <i class="fa fa-clipboard"></i> Paste
+        </button>
+    </div>
+    <div id="video-timer" class="ui-element">
+        <span id="current-time">00:00</span> / <span id="duration">00:00</span>
+    </div>
+    <div id="progress-container" class="ui-element" onclick="seekVideo(event)">
+        <div id="progress-bar"></div>
+    </div>
+    <div id="buffering-indicator" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+    <div id="error-message" style="display: none;"></div>
+    <button id="fullscreenBtn" class="ui-element" onclick="toggleFullScreen()">
+        <i class="fa fa-expand"></i>
+    </button>
+
+    <a-scene vr-mode-ui="enabled: false" touch-action="none">
+        <a-assets>
+            <video id="vr-video" crossorigin="anonymous" playsinline loop></video>
+        </a-assets>
+        <a-camera custom-touch-controls></a-camera>
+        <a-videosphere src="#vr-video"></a-videosphere>
+    </a-scene>
+    <script src="script.js"></script>
+</body>
+
+</html>
