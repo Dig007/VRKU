@@ -1,0 +1,47 @@
+name: Build and Deploy Android App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout your repository content into GitHub Actions runner
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      # Setup Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      # Install Cordova CLI
+      - name: Install Cordova CLI
+        run: npm install -g cordova
+
+      # Add Android platform to Cordova
+      - name: Add Android Platform
+        run: |
+          cordova platform add android
+
+      # Build Android APK
+      - name: Build APK
+        run: |
+          cordova build android
+          
+      # Optional: If you use secrets to sign your app you can uncomment this step
+      # - name: Sign APK
+      #   run: |
+      #     jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ${{ secrets.KEYSTORE }} -storepass ${{ secrets.KEYSTORE_PASSWORD }} app-release-unsigned.apk ${{ secrets.ALIAS }}
+
+      # Optional: Use this action to upload your APK to GitHub artifacts
+      # - name: Upload APK to GitHub Artifacts
+      #   uses: actions/upload-artifact@v1
+      #   with:
+      #     name: App
+      #     path: path/to/your/app.apk
